@@ -34,17 +34,17 @@ export const preprocess = (data: any) => {
   }
   // decompacted database in hierarchical form of:
   // [["province",[["amphur",[["district",["zip"...]]...]]...]]...]
-  data.foreach(function(provinces: any[]) {
+  data.forEach(function(provinces: any[]) {
     var i = 1;
     if (provinces.length === 3) {
       // geographic database
       i = 2;
     }
 
-    provinces[i].foreach(function(amphoes: any[]) {
-      amphoes[i].foreach(function(districts: any[]) {
+    provinces[i].forEach(function(amphoes: any[]) {
+      amphoes[i].forEach(function(districts: any[]) {
         districts[i] = districts[i] instanceof Array ? districts[i] : [districts[i]];
-        districts[i].foreach(function(zipcode: number) {
+        districts[i].forEach(function(zipcode: number) {
           var entry: ThaiAddress = {
             district: t(districts[0]),
             amphoe: t(amphoes[0]),
